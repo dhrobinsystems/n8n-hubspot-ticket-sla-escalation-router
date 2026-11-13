@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Lint, build check and tests (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [20.x, 22.x]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # The project has zero npm dependencies, so there is nothing to install.
+      - name: Lint (syntax check + workflow.json parse)
+        run: npm run lint
+
+      - name: Verify workflow.json matches src/ (build consistency)
+        run: npm run build:check
+
+      - name: Run unit and workflow harness tests
+        run: npm test
+
+      - name: Confirm a fresh build leaves no diff
+        run: |
+          npm run build
+          git diff --exit-code -- workflow.json
