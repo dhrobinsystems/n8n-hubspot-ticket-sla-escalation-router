@@ -1,0 +1,32 @@
+{
+  "name": "n8n-hubspot-ticket-sla-escalation-router",
+  "version": "1.0.0",
+  "description": "n8n workflow that monitors open HubSpot tickets, evaluates first-response and resolution SLAs by priority tier, and escalates neglected tickets via HubSpot tasks, Slack and email.",
+  "main": "src/slaEngine.js",
+  "private": true,
+  "license": "MIT",
+  "author": "DH Robin (dhRobin Systems)",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build-workflow.js",
+    "build:check": "node scripts/build-workflow.js --check",
+    "lint": "node --check src/config.js && node --check src/slaEngine.js && node --check scripts/build-workflow.js && node --check tests/slaEngine.test.js && node --check tests/workflow.test.js && node -e \"JSON.parse(require('fs').readFileSync('workflow.json','utf8'))\"",
+    "test": "node --test tests/slaEngine.test.js tests/workflow.test.js",
+    "test:coverage": "node --test --experimental-test-coverage tests/slaEngine.test.js tests/workflow.test.js",
+    "ci": "npm run lint && npm run build:check && npm test"
+  },
+  "keywords": [
+    "n8n",
+    "hubspot",
+    "sla",
+    "escalation",
+    "customer-support",
+    "revops",
+    "slack",
+    "automation"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}

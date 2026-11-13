@@ -1,0 +1,30 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+
+# Dependencies
+node_modules/
+package-lock.json.bak
+
+# Logs and local execution output
+logs/
+*.log
+npm-debug.log*
+executions/
+.n8n/
+dry-run-*.json
+coverage/
+.nyc_output/
+
+# Editor and OS artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
