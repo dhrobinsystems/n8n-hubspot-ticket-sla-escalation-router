@@ -53,6 +53,8 @@ Every 15 minutes (or on demand) the workflow:
 
 ## Architecture
 
+![n8n HubSpot SLA Workflow Architecture](./assets/n8n-hubspot-sla-workflow-architecture.png)
+
 ```mermaid
 flowchart LR
     A[Every 15 Minutes] --> C
